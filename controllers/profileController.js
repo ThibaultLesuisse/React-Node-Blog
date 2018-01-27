@@ -1,0 +1,4 @@
+
+exports.Home = (req, res) => {
+    
+}

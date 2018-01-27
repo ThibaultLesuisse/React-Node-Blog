@@ -1,4 +1,4 @@
-version: '3'
+version: "3.4"
 services:
   mongo:
     image: "mongo"
@@ -9,6 +9,6 @@ services:
   redis:
     image: "redis:alpine"
 volumes:
-  mongodb:
+   mongodb:
     external:
       name: mongodb

@@ -33,8 +33,7 @@ exports.Login = (req, res) => {
         }
         });
             
-        })
-      
+    })      
     }else{
         console.log("passwords don't match");
     }
@@ -52,9 +51,7 @@ exports.Register = (req, res) => {
                 new_user.save().then(() => console.log('user ' + req.body.name + ' saved'));
                 res.render('blog');
             });
-        });
-        
-       
+        });       
     }
 }
 
@@ -67,7 +64,7 @@ function insertIntoSession(){
             for (var i = 0; i < buf.length && length > 0; i++) {
               var randomByte = buf.readUInt8(i);
               if (randomByte < maxByte) {
-                string += randomByte;
+                 string += String.fromCharCode(randomByte);
                 length--;
               }
             }

@@ -8,16 +8,13 @@ const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const RedisStore = require('connect-redis')(session);
 const errorHandler = require('errorhandler');
+const routes = require('./routes');
 const app = express();
 const sessionMiddelware = require('./session');
-//Controllers
 
-const homeController = require('./controllers/homeController');
-const loginController = require('./controllers/loginController');
-const blogController = require('./controllers/blogController');
 clientRedis = redis.createClient({port: 6379});
 
-//Middlewere
+// Middlewere
 
 app.use(morgan('dev'));
 app.use(cookieParser());
@@ -27,24 +24,12 @@ app.use(session({
     store: new RedisStore({client: clientRedis}),
     secret: 'keyboard cat'
 }));
-// create application/x-www-form-urlencoded parser
-var urlencodedParser = bodyParser.urlencoded({ extended: false })
+// Create application/x-www-form-urlencoded parser
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }));
-//Routes Without Authentication
-app.get('/', homeController.Home);
-app.get('/register', homeController.Register);
-app.post('/register',urlencodedParser, loginController.Register);
-app.get('/loginerror', (req, res) => {
-    res.render('loginerror');
-    res.end();
-});
-app.post('/login' , urlencodedParser, loginController.Login );
 
-// ----- AUTH --------
-//Routes with Authentication
-
-
-app.get('/profile',sessionMiddelware.middleware, blogController.blog);
+// Routes
+app.use(routes);
 
 app.use(errorHandler());
 
