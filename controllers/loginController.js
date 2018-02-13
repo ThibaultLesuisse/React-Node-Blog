@@ -3,6 +3,8 @@ const crypto = require('crypto');
 const mongoose = require('mongoose');
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
+
+
 mongoose.connect('mongodb://localhost/test');
 
 
