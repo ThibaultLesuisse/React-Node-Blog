@@ -10,5 +10,7 @@ exports.Home = (req, res) => {
     
 };
 exports.Register = (req, res) => {
-    res.render('register');
+    res.render('register', {
+        errors: {}
+    });
 }
