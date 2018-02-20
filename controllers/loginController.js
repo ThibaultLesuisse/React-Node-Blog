@@ -7,8 +7,6 @@ const bcrypt = require('bcrypt');
 
 mongoose.connect('mongodb://localhost/test');
 
-
-let password = "thib4life";
 let session = sessionMiddelware.sessions();
 
 exports.Login = (req, res) => {
@@ -17,14 +15,12 @@ exports.Login = (req, res) => {
             'email': req.body.email
         }, 'email password name', (err, user) => {
             if (err) {
-                console.log('invalid error');
                 res.render('home', {
                     error: 'invalid_username'
                 });
             }
             user.comparePassword(req.body.password, (err, isMatch) => {
                 if (err) {
-                    console.log('invalid error');
                     res.render('home', {
                         error: 'invalid_password'
                     });
@@ -35,6 +31,12 @@ exports.Login = (req, res) => {
                     });
                     res.render('blog', {
                         user: user.name
+                    });
+                }
+                else {
+                    console.log('passwords dont match');
+                    res.render('home', {
+                        error: 'invalid_password'
                     });
                 }
             });

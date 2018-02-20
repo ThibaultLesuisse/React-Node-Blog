@@ -1,3 +1,8 @@
+const isAuthenticated = require('../helpers/isAuthenticated');
+const Post = require('../models/Post')
+
 exports.blog = (req, res) => {
-    res.render('blog');
+    isAuthenticated?res.render('blog', {
+        post: Post.find({})
+    }):res.render('home');
 }

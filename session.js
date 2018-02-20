@@ -1,5 +1,3 @@
-
-
 let sessions = [];
 exports.sessions =  () => {
     return sessions;
@@ -11,6 +9,8 @@ exports.middleware = (req, res, next)=> {
         next();
     }
     else{
-        res.render('loginerror');
+        res.render('home', {
+            error: 'notLoggedIn'
+        });
     }
 }
