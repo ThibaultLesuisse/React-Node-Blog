@@ -5,18 +5,20 @@ const loginController = require('./controllers/loginController');
 const blogController = require('./controllers/blogController');
 const webpack = require('webpack');
 const path = require('path');
+const authSession = require('./session').middleware
 
-//Routes Without Authentication
 Router.get('/', homeController.Home);
-
 Router.get('/register', homeController.Register);
 Router.post('/register', loginController.Register);
 Router.get('/loginerror', (req, res) => {
     res.render('loginerror');
     res.end();
 });
+
 Router.post('/login', loginController.Login );
-Router.get('/blog', blogController.blog)
+Router.get('/blog', authSession, blogController.blog, );
+Router.get('/blog/new', blogController.new);
+Router.post('/blog/new', blogController.newSubmit)
 // ----- AUTH --------
 //Routes with Authentication
 

@@ -12,6 +12,7 @@ let password = "thib4life";
 let session = sessionMiddelware.sessions();
 
 exports.Login = (req, res) => {
+    console.log('in login function');
     if (req.body.email) {
         User.findOne({
             'email': req.body.email
@@ -30,11 +31,16 @@ exports.Login = (req, res) => {
                     });
                 }
                 if (isMatch) {
-                    res.cookie('session', insertIntoSession(), {
+                    res.cookie('session', insertIntoSession(user.id), {
                         maxAge: 900000
                     });
                     res.render('blog', {
                         user: user.name
+                    });
+                }else{
+                    console.log('invalid password')
+                    res.render('home', {
+                        error: 'invalid_password'
                     });
                 }
             });
@@ -59,7 +65,7 @@ exports.Register = (req, res) => {
     }
 }
 
-function insertIntoSession() {
+function insertIntoSession(id) {
     let length = 32;
     const maxByte = 256;
     let string = '';
@@ -74,5 +80,6 @@ function insertIntoSession() {
         }
     }
     session.push(string);
+    require('../session').setSession(id, string);
     return string;
 }

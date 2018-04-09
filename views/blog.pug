@@ -2,3 +2,12 @@ extends layout
 
 block content
   h1 Welcome #{user}
+    ul
+  each post in posts
+    .row.justify-content-center
+      .card.col(style='width: 18rem;')
+        .card-body 
+          h5.card-title= post.title
+          p.card-text= post.content
+  else
+    li There are no blogposts yet

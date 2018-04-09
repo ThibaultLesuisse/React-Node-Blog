@@ -2,7 +2,6 @@ const express = require('express');
 const body = require('body-parser');
 const morgan = require('morgan');
 const path = require('path');
-const redis = require("redis");
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
@@ -20,6 +19,9 @@ const middleware = createWebpackMiddleware(compiler, webpackConfig.output.public
 
 
 // Middlewere
+
+
+
 
 app.use(morgan('dev'));
 app.use(cookieParser());
