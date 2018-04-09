@@ -11,7 +11,10 @@ mongoose.connect('mongodb://localhost/test');
 let password = "thib4life";
 let session = sessionMiddelware.sessions();
 
-exports.Login = (req, res) => {
+exports.login = (req, res) => {
+    res.render('user/login');
+}
+exports.loginSubmit = (req, res) => {
     console.log('in login function');
     if (req.body.email) {
         User.findOne({
@@ -37,7 +40,7 @@ exports.Login = (req, res) => {
                     res.render('blog', {
                         user: user.name
                     });
-                }else{
+                } else {
                     console.log('invalid password')
                     res.render('home', {
                         error: 'invalid_password'

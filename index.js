@@ -18,11 +18,7 @@ const compiler = webpack(webpackConfig);
 const middleware = createWebpackMiddleware(compiler, webpackConfig.output.publicPath);
 
 
-// Middlewere
-
-
-
-
+// Common Middlewere
 app.use(morgan('dev'));
 app.use(cookieParser());
 app.set('views', path.join(__dirname, 'views'));
@@ -31,10 +27,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }));
 
 // Routes
-
 app.use(routes);
 
+// ErrorHandler
 app.use(errorHandler());
+
+// Webpackmiddleware
 app.use(middleware);
 app.use(webpackHotMiddleware(compiler));
 const fs = middleware.fileSystem;
