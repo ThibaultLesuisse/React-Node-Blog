@@ -38,7 +38,7 @@ jspm_packages/
 package-lock.json
 
 #Dll
-dllPluging
+dllPluging/
 
 # Typescript v1 declaration files
 typings/
