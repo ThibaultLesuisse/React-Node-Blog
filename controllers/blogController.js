@@ -1,8 +1,29 @@
-const isAuthenticated = require('../helpers/isAuthenticated');
 const Post = require('../models/Post')
 
+
 exports.blog = (req, res) => {
-    isAuthenticated(req, res)?res.render('blog', {
-        post: Post.find({})
-    }):res.render('home');
+    Post.find({}).then((result) => {
+        res.render('blog', {
+            posts: result
+        })
+    });
+    
+
+}
+exports.new = (req, res) => {
+    res.render('blog/new')
+}
+exports.newSubmit = (req, res) => {
+    console.log('Got into newSubmit')
+    if(req.body.title && req.body.content){
+        let new_post = new Post({
+            title: req.body.title,
+            author: "Thibault",
+            content: req.body.content
+        });
+        new_post.save().then(() => {
+            console.log('New blog post saved');
+        });
+        res.redirect('../blog');
+    }
 }

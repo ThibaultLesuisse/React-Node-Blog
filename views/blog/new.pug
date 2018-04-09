@@ -1,0 +1,18 @@
+extends ../layout
+
+block content
+  .row.justify-content-center
+    .card.col(style='width: 18rem;')
+      .card-body 
+        h5.card-title New blog post
+         hr
+         form(action='/blog/new', method="POST")
+          .form-group
+            label(for='title') Blog Title
+            input(type='text', id='title', name='title').form-control
+          .form-group
+            label(for='content') Text
+            textarea(name="content", id="content", cols="30", rows="10").form-control
+          button(type='submit').btn.btn-primary Submit
+    hr
+  .row

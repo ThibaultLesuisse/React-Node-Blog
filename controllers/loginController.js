@@ -8,7 +8,11 @@ const validator = require('validator');
 
 let session = sessionMiddelware.sessions();
 
-exports.Login = (req, res) => {
+exports.login = (req, res) => {
+    res.render('user/login');
+}
+exports.loginSubmit = (req, res) => {
+    console.log('in login function');
     if (req.body.email) {
         User.findOne({
             'email': req.body.email
@@ -94,9 +98,8 @@ async function insertIntoSession(id) {
         string += Math.random().toString(36).substr(2, 8);
     }
     session.push(string);
-    await redis.set(id, string);
+    require('../session').setSession(id, string);
     redis.get(id, (err, result) => {
         console.log('Result is ' + result);
     })
-    return string;
 }

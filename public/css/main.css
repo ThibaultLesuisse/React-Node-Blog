@@ -1,3 +1,32 @@
 body {
-
+    background-image: url('../images/bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.jumbotron {
+    background-color: transparent !important;
+}
+nav {
+    background-color: white;
+}
+.container {
+    margin-top: 5%;
+}
+.card {
+    background-color: transparent !important;
+}
+.form-control {
+    background-color: transparent !important;
+}
+h1 {
+    text-align: center;
+}
+card {
+    margin-top: 5%;
+}
+.header-image{
+    width: 100vw;
+    height: 30vh;
+    position: fixed;
+    background-image: url('../images/header-image.jpg');
 }
