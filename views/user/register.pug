@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  .row.justify-content-center
+    h1.col-6.align-self-center Microblog
+  .row.justify-content-center
+    .card.col(style='width: 18rem;')
+      .card-body 
+        h5.card-title regsiter
+         form(action='/register', method="POST")
+          .form-group
+            label(for='Email') Email address
+            input(type='email', id='email', name='email').form-control
+          .form-group
+            label(for='password') Password
+            input(type='password', id='password', name='password').form-control
+          .form-group
+            label(for='name') Name
+            input(type='text', id='name', name='name').form-control
+          button(type='submit').btn.btn-primary Login
+    hr
+  .row
+  
