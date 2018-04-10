@@ -20,6 +20,7 @@ if (process.env.NODE_ENV === 'production') {
   /**
    * I use node_modules/react-boilerplate-dlls by default just because
    * it isn't going to be version controlled and babel wont try to parse it.
+   * ----- Changed it anyway because that is just ugly
    */
   mkdir('-p', outputPath);
   

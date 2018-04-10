@@ -1,4 +1,4 @@
-extends layout
+extends ../layout
 
 
 block content
@@ -22,7 +22,7 @@ block content
             .col-10
               if errors.passwordsMatchError || passwordLengthError
                 input(type='password', id='password', name='password').form-control.is-invalid
-                .invalid-feedback Please make sure the passwords match and they have the same lenght
+                .invalid-feedback Please make sure the passwords match and they have the same length
               else 
                 input(type='password', id='password', name='password').form-control
           .form-group.row
@@ -30,7 +30,7 @@ block content
             .col-10
               if errors.passwordsMatchError || passwordLengthError
                 input(type='password', id='password2', name='password2' required).form-control.is-invalid
-                .invalid-feedback Please make sure the passwords match and they have the same lenght
+                .invalid-feedback Please make sure the passwords match and they have the same length
               else
                 input(type='password', id='password2', name='password2' required).form-control
           .form-group.row

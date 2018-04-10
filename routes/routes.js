@@ -1,11 +1,11 @@
 const express = require('express');
 const Router = express.Router();
-const homeController = require('./controllers/homeController');
-const loginController = require('./controllers/loginController');
-const blogController = require('./controllers/blogController');
+const homeController = require('../controllers/homeController');
+const loginController = require('../controllers/loginController');
+const blogController = require('../controllers/blogController');
 const webpack = require('webpack');
 const path = require('path');
-const authSession = require('./session').middleware
+const authSession = require('../session').middleware
 
 Router.get('/', homeController.Home);
 Router.get('/register', homeController.Register);
@@ -16,7 +16,7 @@ Router.get('/loginerror', (req, res) => {
 });
 Router.get('/login', loginController.login)
 Router.post('/login', loginController.loginSubmit );
-Router.get('/blog', authSession, blogController.blog );
+Router.get('/blog/overview', authSession, blogController.blog );
 Router.get('/blog/new', blogController.new);
 Router.post('/blog/new', blogController.newSubmit)
 // ----- AUTH --------

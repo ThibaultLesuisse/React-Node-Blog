@@ -3,7 +3,7 @@ const Post = require('../models/Post')
 
 exports.blog = (req, res) => {
     Post.find({}).then((result) => {
-        res.render('blog', {
+        res.render('blog/blog', {
             posts: result
         })
     });
@@ -22,7 +22,6 @@ exports.newSubmit = (req, res) => {
             content: req.body.content
         });
         new_post.save().then(() => {
-            console.log('New blog post saved');
         });
         res.redirect('../blog');
     }

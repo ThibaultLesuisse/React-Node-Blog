@@ -9,13 +9,13 @@ exports.middleware = (req, res, next) => {
     if (req.cookies.session) {
         client.get(req.cookies.session, (err, reply) => {
             if (err) {
-                res.render('loginerror');
+                res.render('user/login');
             } else {
                 next();
             }
         })
     } else {
-        res.render('loginerror');
+        res.render('user/login');
     }
 }
 

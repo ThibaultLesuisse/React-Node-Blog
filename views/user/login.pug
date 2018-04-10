@@ -8,11 +8,16 @@ block content
       .card-body 
         h5.card-title.text-center Login
         hr
-        form(action='/login', method="POST").card-text
+        form(action='/login', method="POST").card-text.needs-validation
           .form-group
             label(for='Email') Email address
             input(type='email', id='email', name='email').form-control
           .form-group
+          if error='invalid_password'
+            label(for='password') Password
+            input(type='password', id='password', name='password').form-control.is-invalid
+            .invalid-feedback Password was incorrect!
+          else
             label(for='password') Password
             input(type='password', id='password', name='password').form-control
           hr
@@ -20,4 +25,6 @@ block content
           button(type='submit').btn.btn-primary Login
     hr
   .row
+  
+
   

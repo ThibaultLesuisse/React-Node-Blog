@@ -24,7 +24,7 @@ exports.loginSubmit = (req, res) => {
             }
             user.comparePassword(req.body.password, (err, isMatch) => {
                 if (err) {
-                    res.render('home', {
+                    res.render('user/login', {
                         error: 'invalid_password'
                     });
                 }
@@ -37,7 +37,7 @@ exports.loginSubmit = (req, res) => {
                     });
                 } else {
                     console.log('passwords dont match');
-                    res.render('home', {
+                    res.render('user/login', {
                         error: 'invalid_password'
                     });
                 }
@@ -64,10 +64,11 @@ exports.Register = (req, res) => {
                         password: hash,
                         name: req.body.name
                     });
-                    new_user.save((err, user) => {
-                        insertIntoSession(user.id)
-                    })
-                    res.render('blog', {
+                    new_user.save((err, user) => {})
+                    res.cookie('session', insertIntoSession(new_user.id), {
+                        maxAge: 900000
+                    });
+                    res.render('blog/blog', {
                         user: new_user.name
                     });
                 });
